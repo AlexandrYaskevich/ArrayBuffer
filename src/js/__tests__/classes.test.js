@@ -1,24 +1,24 @@
 import Character from "../classes";
 
 test('normal attack', () => {
-    const newMag = new Character(100, 2);
-    expect(newMag.normalAttack()).toBe(90);
+    const newMag = new Character("Daemon", 100, 2);
+    expect(newMag.attack).toBe(90);
   });
 
   test('normal attack zero way', () => {
-    const newDaemon = new Character(100, 0);
+    const newDaemon = new Character("Daemon",100, 0);
     
-    expect(newDaemon.normalAttack()).toBe(100);
+    expect(newDaemon.attack).toBe(100);
   });
 
   test('stoned attack zero way', () => {
-    const newPlayer = new Character(100, 0);
+    const newPlayer = new Character("Player", 100, 0);
     
-    expect(newPlayer.stonedAttack()).toBe(95);
+    expect(newPlayer.stoned).toBe(95);
   });
 
   test('stoned attack', () => {
-    const newPlayer = new Character(100, 2);
-    
-    expect(newPlayer.stonedAttack()).toBe(85);
+    const newPlayer = new Character("Player",100, 2);
+    newPlayer.stonedstay = true;
+    expect(newPlayer.stoned).toBe(85);
   });

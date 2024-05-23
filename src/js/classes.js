@@ -1,29 +1,47 @@
-const players = new Map;
-
 export default class Character {
-    constructor(attack, wayattack) { 
-        this.attack = attack;
-        this.wayattack = wayattack;
-        players.set(this, {
-            attack,
-            wayattack
-        })    
+    constructor(type, attacked, wayattack) { 
+        this.type = type;
+        this.attacked = attacked;
+        this.wayattack = wayattack; 
+        this.stonedstay = false;
     }
-    normalAttack() {
-        if(players.get(this).wayattack > 1) {
-            return players.get(this).attack - ((players.get(this).wayattack - 1) * 10);
+    set attack(attacked) {
+        if(this.wayattack > 1) {
+            return this.attacked - ((this.wayattack - 1) * 10);
         }
-        return players.get(this).attack;
+        else {
+           return this.attacked;
+        }
     }
-    stonedAttack() {
-        if(players.get(this).wayattack > 1) {
-            return players.get(this).attack - ((players.get(this).wayattack - 1) * 10) - (Math.log2(players.get(this).wayattack) * 5);
+    set stoned(attacked) {
+        if(this.stonedstay) {
+            return this.attacked - ((this.wayattack - 1) * 10) - (Math.log2(this.wayattack) * 5);
         }
-        return players.get(this).attack - 5;
+        else {
+            return this.attacked - 5;
+        }
+    }
+    get attack() {
+        if(this.wayattack > 1) {
+            return this.attacked - ((this.wayattack - 1) * 10);
+        }
+        else {
+           return this.attacked;
+        }
+    }
+    get stoned() {
+        if(this.stonedstay) {
+            return this.attacked - ((this.wayattack - 1) * 10) - (Math.log2(this.wayattack) * 5);
+        }
+        else {
+            return this.attacked - 5;
+        }
     }
 }
 
-const Magician = new Character(100, 3);
-const Daemon = new Character(100, 0);
+const Magician = new Character("Magician");
+const Daemon =new Character("Daemon");
+
+
 
 
