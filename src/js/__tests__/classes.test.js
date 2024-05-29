@@ -11,14 +11,14 @@ test('normal attack', () => {
     expect(newDaemon.attack).toBe(100);
   });
 
-  test('stoned attack zero way', () => {
+  test('stoned false', () => {
     const newPlayer = new Character("Player", 100, 0);
     
-    expect(newPlayer.stoned).toBe(95);
+    expect(newPlayer.stoned).toBe(false);
   });
 
-  test('stoned attack', () => {
+  test('stoned true', () => {
     const newPlayer = new Character("Player",100, 2);
     newPlayer.stonedstay = true;
-    expect(newPlayer.stoned).toBe(85);
+    expect(newPlayer.stoned).toBe(true);
   });

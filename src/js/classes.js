@@ -6,36 +6,32 @@ export default class Character {
         this.stonedstay = false;
     }
     set attack(attacked) {
-        if(this.wayattack > 1) {
-            return this.attacked - ((this.wayattack - 1) * 10);
-        }
-        else {
-           return this.attacked;
-        }
+        this.attacked = attacked;
     }
-    set stoned(attacked) {
-        if(this.stonedstay) {
-            return this.attacked - ((this.wayattack - 1) * 10) - (Math.log2(this.wayattack) * 5);
-        }
-        else {
-            return this.attacked - 5;
-        }
+    set stoned(value) {
+        this.stonedstay = value;
     }
     get attack() {
-        if(this.wayattack > 1) {
-            return this.attacked - ((this.wayattack - 1) * 10);
+        if(!this.stonedstay) {
+            if(this.wayattack > 1) {
+                return this.attacked - ((this.wayattack - 1) * 10);
+            }
+            else  {
+                return this.attacked;
+            }
         }
         else {
-           return this.attacked;
+            if(this.wayattack > 1) {
+                return this.attacked - ((this.wayattack - 1) * 10) - (Math.log2(this.wayattack) * 5);
+            }
+            else {
+                return this.attacked - 5;
+            }
         }
+        
     }
     get stoned() {
-        if(this.stonedstay) {
-            return this.attacked - ((this.wayattack - 1) * 10) - (Math.log2(this.wayattack) * 5);
-        }
-        else {
-            return this.attacked - 5;
-        }
+        return this.stonedstay;
     }
 }
 
